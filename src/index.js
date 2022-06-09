@@ -4,7 +4,18 @@
  * @param {string} string
  * @returns {string}
  */
-export const replaceZAndVFromString = (string) => {};
+export const replaceZAndVFromString = (string) => {
+  let result = "";
+  const letters = ["v", "z"];
+  for (let i = 0; i < string.length; i++){
+    if (letters.includes(string[i].toLowerCase())) {
+      result += "*";
+    } else {
+      result +=string[i]
+    }
+  }
+  return result;
+};
 
 /**
  * Функция должна принять 3 аргумента и все строки. Мы передаем строку,
@@ -16,7 +27,10 @@ export const replaceZAndVFromString = (string) => {};
  * @param {string} newWord
  * @returns {string}
  */
-export const changeWord = (string, word, newWord) => {};
+export const changeWord = (string, word, newWord) => {
+  const lastWordIndex = string.indexOf(word)+word.length;
+  return `${string.slice(0, string.indexOf(word))}${newWord}${string.slice(lastWordIndex, string.length)}`
+ };
 
 /**
  * Должна вернуть строку(1 аргумент) на обрезанную по длине(2 аргумент, число)
@@ -24,7 +38,9 @@ export const changeWord = (string, word, newWord) => {};
  * @param {number} length
  * @returns {string}
  */
-export const truncate = (string, length) => {};
+export const truncate = (string, length) => {
+  return string.slice(0,length)
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -37,7 +53,16 @@ export const truncate = (string, length) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbols = (string, symbol) => {};
+export const quantityOfSymbols = (string, symbol) => {
+  let counter = 0;
+  for (let letter of string) {
+    if (letter.toLowerCase() === symbol.toLowerCase()) {
+      counter += 1
+    }
+  }
+  return counter;
+
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -54,4 +79,13 @@ export const quantityOfSymbols = (string, symbol) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbolsWithIndexOf = (string, symbol) => {};
+export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
+  let i = -1;
+  let counter = 0;
+  while ((i = string.toLowerCase().indexOf(symbol.toLowerCase(), i + 1)) !== -1) {
+    if (i !== -1) {
+      counter++;
+    }
+  }
+  return counter;
+};
